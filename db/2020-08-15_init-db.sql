@@ -9,7 +9,7 @@ CREATE TABLE person (
 CREATE TABLE location (
     id SERIAL PRIMARY KEY,
     person_id INT NOT NULL,
-    coordinate GEOMETRY NOT NULL,
+    coordinate VARCHAR NOT NULL,
     creation_time TIMESTAMP NOT NULL DEFAULT NOW(),
     FOREIGN KEY (person_id) REFERENCES person(id)
 );

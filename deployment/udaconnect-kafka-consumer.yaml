@@ -1,0 +1,63 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: udaconnect-kafka-consumer
+  name: udaconnect-kafka-consumer
+spec:
+  ports:
+  - name: "9092"
+    port: 9092
+    targetPort: 9092
+    nodePort: 30004
+  selector:
+    service: udaconnect-kafka-consumer
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: udaconnect-kafka-consumer
+  name: udaconnect-kafka-consumer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: udaconnect-kafka-consumer
+  template:
+    metadata:
+      labels:
+        service: udaconnect-kafka-consumer
+    spec:
+      containers:
+      - image: pitson3/udaconnect-kafka-consumer:latest
+        name: udaconnect-kafka-consumer
+        imagePullPolicy: Always
+        env:
+        - name: DB_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              name: db-env
+              key: DB_USERNAME
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: DB_PASSWORD
+        - name: DB_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: db-env
+              key: DB_NAME
+        - name: DB_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: db-env
+              key: DB_HOST
+        - name: DB_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: db-env
+              key: DB_PORT
+      restartPolicy: Always

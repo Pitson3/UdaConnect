@@ -24,3 +24,6 @@ shapely==1.7.0
 SQLAlchemy==1.3.19
 Werkzeug==0.16.1
 flask-restx==0.2.0
+python-kafka==2.0.2
+grpc-tools==1.41.0
+grpcio==1.41.0
