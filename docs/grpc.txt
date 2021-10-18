@@ -1,0 +1,8 @@
+Internally the service is running on localhost:5005 and in k8s it is running on localhost:30003
+
+All of the grpc based servicesa are located inside ./udaconnect/modules/api/grpc_server/ directory.
+
+For the udaconnect application, grpc is automatically served inside the kafka broker. However, 
+for testing purposes do the following inside the grpc_server directory(Virtual Env.):
+   1. python __init__.py (Separate Terminal)
+   2. python grpc_writer.py (Separate Terminal)

@@ -1,0 +1,80 @@
+openapi: 3.0.3
+info:
+  description: API endpoint for creating a new location and retrieving the existing location(s)
+  version: "1.0.0"
+  title: Udaconnect location API 
+paths:
+  /api/locations:
+    post:
+      summary: Creates a new Location for the  UdaConnect application
+      operationId: CreateLocationResource
+      description: Add a location to UdaConnect.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateLocation'
+        description: Location resource being added
+      responses:
+        '201':
+          description: Successfully created a new location
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateLocation'
+        '400':
+          description: 'Invalid input'
+  '/api/locations/{location_id}':
+    parameters:
+      - in: path
+        description: Unique ID for a given Location
+        name: location_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/GetLocation'
+    get:
+      summary: Retrieves a locations on UdaConnect
+      operationId: getLocationResource
+      description: Retrieves a location in UdaConnect.
+      responses:
+        '200':
+          description: Get a specific Location
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GetLocation'
+        '400':
+          description: Invalid input parameter
+components:
+  schemas:
+    CreateLocation:
+      type: object
+      required:
+        - person_id
+        - creation_time
+        - latitude
+        - longitude
+      properties:
+        person_id:
+          type: integer
+          example: 5
+        creation_time:
+          type: string
+          example: '2021-10-17T10:37:06'
+        latitude:
+          type: float
+          example: -122.290883
+        longitude:
+          type: float
+          example: 37.55363
+    GetLocation:
+      type: string
+      example: 'Example: /api/location/45'
+      required:
+        - id
+      properties:
+        id:
+          type: integer
+          example: 45

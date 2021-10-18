@@ -1,0 +1,17 @@
+1. REST
+This provides a uniform interface for communicating with the external systems via HTTP. Besides, REST provides a layered system architecture 
+that should be encapsulated from the user. So per our company's use case, it is right to expose our API through the flexible 
+REST endpoints so that the others can easily adopt our services. Meanwhile, as the system will be able to handle high data loads then 
+REST can use other services within its layered system so as to enforce high processing speed and reliability.
+
+2. KAFKA
+This is a message queuing technique that is best fit for cleanly decoupled systems/services. Meanwhile, the technique enforces highy
+relaibility and processing speed for message passed within it. Hence, this will be a good option for our use case (inside REST) as our
+udaconnect services will be separated from each other while processing the large volumes of data that have been ingested in our system.
+Finally, we will be able to get the assurance that all of the message that have been passed from REST into KAFKA will be processed
+with minimal risks of message failure.
+
+3. gRPC
+This enforces high perforamnce, and it also a good solution for adoption and communication within the internal teams over HTTP/2. Then with our use case, the gRPC service will be
+hidden inside KAFKA so as to boost the processing speed on the queued messages. Besides, gRPC will enhance communication beween the decoupled 
+services within our organization while enforcing some security and rules on the passed messages.
