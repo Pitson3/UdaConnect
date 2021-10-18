@@ -62,32 +62,6 @@
 			},
 			"response": []
 		},
-		{
-			"name": "http://localhost:30002/api/locations/{location_id}",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:30002/api/locations/4",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "30002",
-					"path": [
-						"api",
-						"locations",
-						"4"
-					]
-				}
-			},
-			"response": []
-		},
         {
 			"name": "http://localhost:30001/api/persons/{person_id}/connection",
 			"request": {
@@ -130,6 +104,32 @@
 			"response": []
 		},
 		{
+			"name": "http://localhost:30002/api/locations/{location_id}",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:30002/api/locations/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "30002",
+					"path": [
+						"api",
+						"locations",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+        {
 			"name": "http://localhost:30002/api/locations",
 			"request": {
 				"method": "POST",
