@@ -4,7 +4,7 @@ info:
   version: "1.0.0"
   title: Udaconnect location API 
 paths:
-  /api/locations:
+  "/api/locations":
     post:
       summary: Creates a new Location for the  UdaConnect application
       operationId: CreateLocationResource
@@ -58,17 +58,17 @@ components:
         - longitude
       properties:
         person_id:
-          type: integer
-          example: 5
+          type: string
+          example: "9"
         creation_time:
           type: string
           example: '2021-10-17T10:37:06'
         latitude:
-          type: float
-          example: -122.290883
+          type: string
+          example: "-2.200083"
         longitude:
-          type: float
-          example: 37.55363
+          type: string
+          example: "1.55363"
     GetLocation:
       type: string
       example: 'Example: /api/location/45'
@@ -76,5 +76,5 @@ components:
         - id
       properties:
         id:
-          type: integer
-          example: 45
+          type: string
+          example: "5"

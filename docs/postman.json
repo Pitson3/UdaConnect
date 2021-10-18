@@ -1,0 +1,162 @@
+{
+	"info": {
+		"name": "udaconnect-apis"
+	},
+	"item": [
+		{
+			"name": "http://localhost:30001/api/persons",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:30001/api/persons",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "30001",
+					"path": [
+						"api",
+						"persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:30001/api/persons CREATE",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n    \"first_name\": \"Pitson\",\r\n    \"last_name\": \"Josiah\",\r\n    \"company_name\": \"Technix.\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:30001/api/persons",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "30001",
+					"path": [
+						"api",
+						"persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:30002/api/locations/{location_id}",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:30002/api/locations/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "30002",
+					"path": [
+						"api",
+						"locations",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+        {
+			"name": "http://localhost:30001/api/persons/{person_id}/connection",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:30003/api/persons/8/connection?start_date=2020-01-01&end_date=2021-02-30&distance=8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "30003",
+					"path": [
+						"api",
+						"persons",
+						"8",
+						"connection"
+					],
+					"query": [
+						{
+							"key": "start_date",
+							"value": "2020-01-01"
+						},
+						{
+							"key": "end_date",
+							"value": "2021-02-30"
+						},
+						{
+							"key": "distance",
+							"value": "8"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:30002/api/locations",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"person_id\": 3,\r\n    \"creation_time\": \"2021-11-05T10:37:06\",\r\n    \"latitude\": \"-2.200083\",\r\n    \"longitude\": \"3.00083\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:30002/api/locations",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "30002",
+					"path": [
+						"api",
+						"locations"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

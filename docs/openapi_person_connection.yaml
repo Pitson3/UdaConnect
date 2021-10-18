@@ -4,7 +4,7 @@ info:
   version: "1.0.0"
   title: UdaConnect Persons and Connections API endpoint
 paths:
-  /api/persons:
+  "/api/persons:
     post:
       summary: Creates a new Person in UdaConnect App
       operationId: CreatePersonResource
@@ -114,8 +114,8 @@ components:
         - company_name
       properties:
         id:
-          type: integer
-          example: 5
+          type: string
+          example: "9"
         first_name:
           type: string
           example: 'Pitson'
@@ -134,8 +134,8 @@ components:
         - company_name
       properties:
         id:
-          type: integer
-          example: 17
+          type: string
+          example: "90"
         first_name:
           type: string
           example: 'Liveness'
@@ -147,16 +147,16 @@ components:
           example: 'KCH'
     GetPerson:
       type: string
-      example: 'Example: /api/persons/5'
+      example: 'Example: /api/persons/8'
       required:
         - id
       properties:
         id:
-          type: integer
-          example: 5
+          type: string
+          example: "8"
     GetConnection:
       type: string
-      example: 'Example: /api/persons/5/connection?start_date=2021-09-01&end_date=2021-10-17&distance=9'
+      example: 'Example: /api/persons/8/connection?start_date=2021-09-01&end_date=2021-10-17&distance=9'
       required:
         - person_id
         - start_date
@@ -164,8 +164,8 @@ components:
         - distance
       properties:
         person_id:
-          type: integer
-          example: 8
+          type: string
+          example: "8"
         start_date:
           type: string
           example: '2021-08-11'
@@ -173,5 +173,5 @@ components:
           type: string
           example: '2021-12-31'
         distance:
-          type: integer
-          example: 8
+          type: string
+          example: "8"
