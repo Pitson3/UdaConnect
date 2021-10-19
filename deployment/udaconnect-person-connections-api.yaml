@@ -31,7 +31,7 @@ spec:
         service: udaconnect-person-connections-api
     spec:
       containers:
-      - image: pitson3/udaconnecct-person-connections-api:latest
+      - image: pitson3/udaconnect-person-connections-api:latest
         name: udaconnect-person-connections-api
         imagePullPolicy: Always
         env:
