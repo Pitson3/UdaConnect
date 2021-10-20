@@ -36,8 +36,10 @@ We will be installing the tools that we'll need to use for getting our environme
 5. [Install Vagrant](https://www.vagrantup.com/docs/installation) with at least version 2.0
 6. [Install Helm](https://devopscube.com/install-configure-helm-kubernetes/) with version 3.0 and install using the script
 7. [Install Zookeeper and Kafka](https://docs.bitnami.com/tutorials/deploy-scalable-kafka-zookeeper-cluster-kubernetes/)
-8. - Before Installing zookeeper and kafka the following might be handy(Run within the kube cluster) to setting the kubeconfig environment:
-9. export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+8. Before Installing zookeeper and kafka the following might be handy(Run within the kube cluster) to setting the kubeconfig environment:
+9. ```bash
+10. $ export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+11. ```
 
 ### Environment Setup
 To run the application, you will need a K8s cluster running locally and to interface with it via `kubectl`. We will be using Vagrant with VirtualBox to run K3s.
@@ -86,7 +88,6 @@ Afterwards, you can test that `kubectl` works by running a command like `kubectl
 
 ### Steps
 NOTE: Make sure to cd into the udaconnect directory and then run the following commands. Besides, make sure the kafka is up and running on port 9092 on your local machine
-The kafka topic named "udaconnect" should also be created for more on setting up kafka refer: https://kafka.apache.org/quickstart
 1. `kubectl apply -f deployment/db-configmap.yaml` - Set up environment variables for the pods
 2. `kubectl apply -f deployment/db-secret.yaml` - Set up secrets for the pods
 3. `kubectl apply -f deployment/postgres.yaml` - Set up a Postgres database running PostGIS
