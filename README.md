@@ -1,7 +1,7 @@
-##Improved readme file based on the initial readme in the udaconnect project by justin
-
-##Pay attention to the kubectl commands for steps to running the project successfully.
 # UdaConnect
+## NOTICE
+The read me is based on the structure for the default udaconnect monolith app as forkked from the udacity repository. PLease pay much attention to details below based on the sections.
+
 ## Overview
 ### Background
 Conferences and conventions are hotspots for making connections. Professionals in attendance often share the same interests and can make valuable business and personal connections with one another. At the same time, these events draw a large crowd and it's often hard to make these connections in the midst of all of these events' excitement and energy. To help attendees make connections, we are building the infrastructure for a service that can inform attendees if they have attended the same booths and presentations at an event.
@@ -21,6 +21,8 @@ To do so, ***you will refactor this application into a microservice architecture
 * [Vagrant](https://www.vagrantup.com/) - Tool for managing virtual deployed environments
 * [VirtualBox](https://www.virtualbox.org/) - Hypervisor allowing you to run multiple operating systems
 * [K3s](https://k3s.io/) - Lightweight distribution of K8s to easily develop against a local cluster
+* [Helm 3](https://helm.sh/)- Package manager for kubernetes
+* [Apache Kafka](https://kafka.apache.org/)- Distributed event streaming platform for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.
 
 ## Running the app
 The project has been set up such that you should be able to have the project up and running with Kubernetes.
@@ -32,6 +34,10 @@ We will be installing the tools that we'll need to use for getting our environme
 3. [Set up `kubectl`](https://rancher.com/docs/rancher/v2.x/en/cluster-admin/cluster-access/kubectl/)
 4. [Install VirtualBox](https://www.virtualbox.org/wiki/Downloads) with at least version 6.0
 5. [Install Vagrant](https://www.vagrantup.com/docs/installation) with at least version 2.0
+6. [Install Helm](https://devopscube.com/install-configure-helm-kubernetes/) with version 3.0 and install using the script
+7. [Install Zookeeper and Kafka](https://docs.bitnami.com/tutorials/deploy-scalable-kafka-zookeeper-cluster-kubernetes/)
+8. - Before Installing zookeeper and kafka the following might be handy(Run within the kube cluster) to setting the kubeconfig environment:
+9. export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 
 ### Environment Setup
 To run the application, you will need a K8s cluster running locally and to interface with it via `kubectl`. We will be using Vagrant with VirtualBox to run K3s.
@@ -91,6 +97,7 @@ The kafka topic named "udaconnect" should also be created for more on setting up
 8. `kubectl apply -f deployment/udaconnect-app.yaml` - Set up the service and deployment for the web app
 9. `sh scripts/run_db_command.sh <POD_NAME>` - Seed your database against the `postgres` pod. (`kubectl get pods` will give you the `POD_NAME`)
 
+
 Manually applying each of the individual `yaml` files is cumbersome but going through each step provides some context on the content of the starter project. In practice, we would have reduced the number of steps by running the command against a directory to apply of the contents: `kubectl apply -f deployment/`.
 
 Note: The first time you run this project, you will need to seed the database with dummy data. Use the command `sh scripts/run_db_command.sh <POD_NAME>` against the `postgres` pod. (`kubectl get pods` will give you the `POD_NAME`). Subsequent runs of `kubectl apply` for making changes to deployments or services shouldn't require you to seed the database again!
@@ -105,6 +112,10 @@ These pages should also load on your web browser:
 * `http://localhost:30001/api/` - Base path for Persons and Connections API
 * `http://localhost:30002/api/`  - Base bath for the Location API
 * `http://localhost:30000/` - Frontend ReactJS Application
+
+### Playing around with postman
+Import the potsman collection(postman.json) into your postman and then play around with the endpoints as per the use case.
+
 
 #### Deployment Note
 You may notice the odd port numbers being served to `localhost`. [By default, Kubernetes services are only exposed to one another in an internal network](https://kubernetes.io/docs/concepts/services-networking/service/). This means that `udaconnect-app` and `udaconnect-api` can talk to one another. For us to connect to the cluster as an "outsider", we need to a way to expose these services to `localhost`.
