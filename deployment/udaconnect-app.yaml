@@ -31,7 +31,7 @@ spec:
         service: udaconnect-app
     spec:
       containers:
-      - image: Pitson3/udaconnect-app:latest
+      - image: pitson3/udaconnect-app:latest
         name: udaconnect-app
         imagePullPolicy: Always
         resources:

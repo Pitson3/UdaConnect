@@ -17,7 +17,7 @@ logger = logging.getLogger("personal-connections-api")
 
 
 TOPIC_NAME = 'udaconnect'
-KAFKA_SERVER = 'localhost:9092'
+KAFKA_SERVER = 'kafka.default.svc.cluster.local:9092'
 print("Creating a kafka producer")
 producer = KafkaProducer(bootstrap_servers=KAFKA_SERVER)
 

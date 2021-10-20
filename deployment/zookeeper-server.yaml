@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: zookeeper-server
+  name: zookeeper-server
+spec:
+  ports:
+  - name: "2181"
+    port: 2181
+    targetPort: 30010
+    nodePort: 30010
+  selector:
+    service: zookeeper-server
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: zookeeper-server
+  name: zookeeper-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: zookeeper-server
+  template:
+    metadata:
+      labels:
+        service: zookeeper-server
+    spec:
+      containers:
+      - image: bitnami/zookeeper:latest
+        name: zookeeper-server
+        env:
+        - name: ALLOW_ANONYMOUS_LOGIN
+          value: "yes"
+        - name: maxClientCnxns
+          value: "60"
+        - name: admin.enableServer
+          value: "false"
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "64m"
+          limits:
+            memory: "256Mi"
+            cpu: "256m"
+      restartPolicy: Always

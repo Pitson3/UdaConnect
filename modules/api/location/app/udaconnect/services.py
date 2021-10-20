@@ -14,7 +14,7 @@ logger = logging.getLogger("location-api")
 import json
 
 TOPIC_NAME = 'udaconnect'
-KAFKA_SERVER = 'localhost:9092'
+KAFKA_SERVER = 'kafka.default.svc.cluster.local:9092'
 producer = KafkaProducer(bootstrap_servers=KAFKA_SERVER)
 
 

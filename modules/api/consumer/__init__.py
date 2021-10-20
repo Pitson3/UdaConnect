@@ -63,7 +63,7 @@ def create_location(location):
         location_stub.Create(locations)
         
 
-consumer = KafkaConsumer(TOPIC_NAME,bootstrap_servers=['localhost:9092'])
+consumer = KafkaConsumer(TOPIC_NAME,bootstrap_servers=['kafka.default.svc.cluster.local:9092'])
 
 for message in consumer:
     d_msg = json.loads((message.value.decode('utf-8'))) #message.value.decode()
