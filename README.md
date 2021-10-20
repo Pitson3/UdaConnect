@@ -37,10 +37,7 @@ We will be installing the tools that we'll need to use for getting our environme
 6. [Install Helm](https://devopscube.com/install-configure-helm-kubernetes/) with version 3.0 and install using the script
 7. [Install Zookeeper and Kafka](https://docs.bitnami.com/tutorials/deploy-scalable-kafka-zookeeper-cluster-kubernetes/)
 8. Before Installing zookeeper and kafka the following might be handy(Run within the kube cluster) to setting the kubeconfig environment:
-9.  ```bash
-$ vagrant ssh
-```
-
+9.  - $ export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 ### Environment Setup
 To run the application, you will need a K8s cluster running locally and to interface with it via `kubectl`. We will be using Vagrant with VirtualBox to run K3s.
 
