@@ -38,7 +38,7 @@ We will be installing the tools that we'll need to use for getting our environme
 7. [Install Zookeeper and Kafka](https://docs.bitnami.com/tutorials/deploy-scalable-kafka-zookeeper-cluster-kubernetes/)
 8. Before Installing zookeeper and kafka the following might be handy(Run within the kube cluster) to setting the kubeconfig environment:
 9. ```bash
-10. $ export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+10. ```$ export KUBECONFIG=/etc/rancher/k3s/k3s.yaml```
 11. ```
 
 ### Environment Setup
