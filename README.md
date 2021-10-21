@@ -21,7 +21,6 @@ To do so, ***you will refactor this application into a microservice architecture
 * [Vagrant](https://www.vagrantup.com/) - Tool for managing virtual deployed environments
 * [VirtualBox](https://www.virtualbox.org/) - Hypervisor allowing you to run multiple operating systems
 * [K3s](https://k3s.io/) - Lightweight distribution of K8s to easily develop against a local cluster
-* [Helm 3](https://helm.sh/)- Package manager for kubernetes
 * [Apache Kafka](https://kafka.apache.org/)- Distributed event streaming platform for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.
 
 ## Running the app
@@ -34,10 +33,7 @@ We will be installing the tools that we'll need to use for getting our environme
 3. [Set up `kubectl`](https://rancher.com/docs/rancher/v2.x/en/cluster-admin/cluster-access/kubectl/)
 4. [Install VirtualBox](https://www.virtualbox.org/wiki/Downloads) with at least version 6.0
 5. [Install Vagrant](https://www.vagrantup.com/docs/installation) with at least version 2.0
-6. [Install Helm](https://devopscube.com/install-configure-helm-kubernetes/) with version 3.0 and install using the script
-7. [Install Zookeeper and Kafka](https://docs.bitnami.com/tutorials/deploy-scalable-kafka-zookeeper-cluster-kubernetes/)
-8. Before Installing zookeeper and kafka the following might be handy(Run within the kube cluster) to setting the kubeconfig environment:
-9.  - $ export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+6. 
 ### Environment Setup
 To run the application, you will need a K8s cluster running locally and to interface with it via `kubectl`. We will be using Vagrant with VirtualBox to run K3s.
 
@@ -86,12 +82,14 @@ NOTE: Make sure to cd into the udaconnect directory and then run the following c
 1. `kubectl apply -f deployment/db-configmap.yaml` - Set up environment variables for the pods
 2. `kubectl apply -f deployment/db-secret.yaml` - Set up secrets for the pods
 3. `kubectl apply -f deployment/postgres.yaml` - Set up a Postgres database running PostGIS
-4. `kubectl apply -f deployment/udaconnect-person-connections-api.yaml` - Set up the Person and Connections services and deployment for the APIs
-5. `kubectl apply -f deployment/udaconnect-location-api.yaml`-Set up the location service and the deployment for the APIs
-6. `kubectl apply -f deployment/udaconnect-kafka-consumer.yaml`-Set up the kafka consumer for handling the create requests for the above services
-7. `kubectl apply -f deployment/udaconnect-grpc-server.yaml`-Set up the grpc server for processing the create requests passed from Kafka consumer
-8. `kubectl apply -f deployment/udaconnect-app.yaml` - Set up the service and deployment for the web app
-9. `sh scripts/run_db_command.sh <POD_NAME>` - Seed your database against the `postgres` pod. (`kubectl get pods` will give you the `POD_NAME`)
+4. `kubectl apply -f deployment/zookeeper.yaml` - Set up a zookeeper service for running kafka on kubernetes cluster
+5. `kubectl apply -f deployment/kafka.yaml` - Set up a kafka brokre for running the microservices below that depends on it
+6. `kubectl apply -f deployment/udaconnect-person-connections-api.yaml` - Set up the Person and Connections services and deployment for the APIs
+7. `kubectl apply -f deployment/udaconnect-location-api.yaml`-Set up the location service and the deployment for the APIs
+8. `kubectl apply -f deployment/udaconnect-kafka-consumer.yaml`-Set up the kafka consumer for handling the create requests for the above services
+9. `kubectl apply -f deployment/udaconnect-grpc-server.yaml`-Set up the grpc server for processing the create requests passed from Kafka consumer
+10. `kubectl apply -f deployment/udaconnect-app.yaml` - Set up the service and deployment for the web app
+11. `sh scripts/run_db_command.sh <POD_NAME>` - Seed your database against the `postgres` pod. (`kubectl get pods` will give you the `POD_NAME`)
 
 
 Manually applying each of the individual `yaml` files is cumbersome but going through each step provides some context on the content of the starter project. In practice, we would have reduced the number of steps by running the command against a directory to apply of the contents: `kubectl apply -f deployment/`.
