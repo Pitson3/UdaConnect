@@ -1,0 +1,3 @@
+TASK:
+Proposed by the final reviewer to further decouple the person_connection into connection and person services as per the architecture.
+Also the grpc service should cosnume the kafka rseources (grpc_writer.py)
